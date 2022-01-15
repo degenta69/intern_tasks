@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    label {
+        margin: auto;
+        padding: 0.5rem;
+    }
+
+    input {
+        margin: auto;
+        padding: 0.5rem;
+        width: 30%;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .masterDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    button {
+        width: 30%;
+        border: 1px solid #03fb42;
+        background: #79ff587d;
+        padding: 0.3rem;
+        margin: auto;
+        margin-bottom: 1rem;
+    }
+
+    .splitMasterDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1rem;
+        border: 3px solid #050c06;
+        padding: 1rem;
+    }
+
+    textarea {
+        border: 1px solid black;
+        margin: 0.5rem;
+    }
+
+    .concatMasterDiv {
+        padding: 1rem;
+        border: 3px solid #050c06;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1rem;
+
+    }
+</style>
+
+<body>
+    <div class="concatMasterDiv">
+        <h2>String Concat</h2>
+        <form class="masterDiv" id="string_concat">
+            <label for="1">string 1</label>
+            <input id="concat1" name='concat_input' type="search" placeholder="type string 1">
+            <label for="2">string 2</label>
+            <input id="concat2" name="concat_input" type="search" placeholder="type string 2">
+            <button id="btn" form="string_concat" type="submit">concat</button>
+        </form>
+        <textarea name="result" id="3" cols="5" rows="3"></textarea>
+    </div>
+    <div class="splitMasterDiv">
+        <h2>split number from string</h2>
+        <form class="masterDiv" id="splitForm">
+            <label for="splitInput">split numbers from string</label>
+            <input id="splitInput" name='SplitInput_1' type="search" placeholder="type string with numbers">
+            <button id="Splitbtn" form="splitForm" type="submit">Split</button>
+        </form>
+        <textarea name="result" id="concatText" cols="5" rows="3"></textarea>
+    </div>
+    <script>
+        const stg1 = document.getElementsByName('concat_input')[0]
+        const stg2 = document.getElementsByName('concat_input')[1]
+
+        document.getElementById('btn').addEventListener('click', (e) => {
+            e.preventDefault()
+            if (stg1.value !== '' || stg2.value !== '') {
+                concatString()
+            }
+            if (stg1.value !== '' && stg2.value !== '') {
+                document.getElementById('3').innerText = '"' + stg1.value + ' ' + stg2.value + '"'
+                document.getElementById('btn').style.background = 'green';
+            }
+        })
+        const concatString = () => {
+            if (stg1.value == '') {
+                correctStg(stg1)
+            }
+            if (stg2.value == '') {
+                correctStg(stg2)
+            }
+
+        }
+        const correctStg = (string) => {
+            string.placeholder = 'give another string in the input '
+            console.log(string)
+            document.getElementById('btn').style.background = 'red';
+        }
+
+        const splitStg = document.getElementsByName('SplitInput_1')[0]
+
+        document.getElementById('Splitbtn').addEventListener('click', (e) => {
+            e.preventDefault()
+            if (splitStg.value === '') {
+                document.getElementById('Splitbtn').style.background = 'red';
+                document.getElementById('concatText').innerText = '" please give some input "'
+            } else {
+                const done = splitStg.value.match(/[\d\.]+|\D+/g)
+
+                console.log(done)
+                document.getElementById('concatText').innerText = '"' + done.join(' ') + '"'
+                document.getElementById('Splitbtn').style.background = 'green';
+
+            }
+        })
+    </script>
+</body>
+
+</html>
