@@ -87,6 +87,11 @@
         const stg1 = document.getElementsByName('concat_input')[0]
         const stg2 = document.getElementsByName('concat_input')[1]
 
+        const btn = document.getElementById('btn')
+        if (stg1.value === '' && stg2.value === '') {
+            btn.disables = true
+        }
+
         document.getElementById('btn').addEventListener('click', (e) => {
             e.preventDefault()
             if (stg1.value !== '' || stg2.value !== '') {
